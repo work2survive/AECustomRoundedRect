@@ -30,134 +30,19 @@ AEthingy/
 │
 ├── CustomRoundedRect.jsx               # Standalone ScriptUI panel (for direct AE script usage)
 ├── expressions/
-│   ├── CustomRoundedRect_Expression.js # Standalone path expression (Effect Controls & hardcoded)
-│   └── ResponsiveTextBox_Expression.js # Auto-sizing text box expression with sourceRectAtTime()
-│
-└── tools/                              # Build utilities
-    ├── ZXPSignCmd.exe                  # Adobe's official signing utility
-    └── certificate.p12                 # 10-year self-signed digital certificate
+    ├── CustomRoundedRect_Expression.js # Standalone path expression (Effect Controls & hardcoded)
+    └── ResponsiveTextBox_Expression.js # Auto-sizing text box expression with sourceRectAtTime()
+
 ```
 
 ---
 
 ## 🚀 Submitting to Adobe Exchange (Marketplace)
 
-The package [`CustomRoundedRect.zxp`](file:///g:/My%20Drive/_openProjects/AEthingy/CustomRoundedRect.zxp) has been built and digitally signed using Adobe's official `ZXPSignCmd` utility with Digicert timestamping. It is ready for direct submission to the Adobe Exchange Producer Portal.
+The package [`CustomRoundedRect.zxp`](CustomRoundedRect.zxp) has been built and digitally signed using Adobe's official `ZXPSignCmd` utility with Digicert timestamping. It is ready for direct submission to the Adobe Exchange Producer Portal.
 
-### Step-by-Step Submission Instructions:
-
-1. **Log in to Adobe Exchange Producer Portal**:
-   - Visit: [Adobe Exchange Producer Portal](https://exchange.adobe.com/creativecloud/producer.html)
-   - Sign in with your Adobe ID (or create a free Developer profile).
-2. **Create a New Product Listing**:
-   - Click **Add Product** / **New Product**.
-   - Product Type: **Creative Cloud Extension / Add-on**.
-   - Supported Apps: Check **After Effects**.
-3. **Upload the ZXP Package**:
-   - Upload [`CustomRoundedRect.zxp`](file:///g:/My%20Drive/_openProjects/AEthingy/CustomRoundedRect.zxp).
-   - Adobe's automated validator will verify the `CSXS/manifest.xml`, digital signature, and bundle ID `com.aethingy.customroundedrect`.
-4. **Fill In Metadata & Listing Info**:
-   - **Title**: `Custom Rounded Rectangle for After Effects`
-   - **Version**: `1.0.0`
-   - **Category**: *Animation & Effects* or *Workflow & Utilities*
-   - **Pricing**: Free or Paid (your choice)
-   - **Description**: Highlight individual corner radii, CSS proportional overlap prevention, and vector shape compatibility.
-5. **Add Artwork**:
-   - Icon (512x512 PNG)
-   - Featured cover image (1280x720 PNG/JPG)
-   - At least 1-2 screenshots of the panel inside After Effects.
-6. **Submit for Review**:
-   - Click **Submit**. Adobe usually reviews submissions within 2-5 business days. Once approved, Adobe re-signs the package with Adobe's production key and publishes it on the Creative Cloud Desktop App Marketplace.
 
 ---
-
-## 🛠️ Re-Building the ZXP Package
-
-If you make any changes to `index.html`, `main.js`, `style.css`, or `hostscript.jsx`, you can regenerate and sign the `.zxp` in one step:
-
-- **Windows**: Double-click [`build_zxp.bat`](file:///g:/My%20Drive/_openProjects/AEthingy/build_zxp.bat) or run in PowerShell:
-  ```powershell
-  .\build_zxp.ps1
-  ```
-- The script automatically:
-  1. Validates the existence of `tools/ZXPSignCmd.exe` and `tools/certificate.p12`.
-  2. Compiles and signs the `extension/` folder into `CustomRoundedRect.zxp`.
-  3. Verifies package integrity and timestamp against Adobe's certificate standards.
-
----
-
-## 💻 Local Testing During Development
-
-To test the CEP panel inside After Effects before uploading:
-
-### Option A: Local CEP Extension Directory (Live Reload)
-1. Enable CEP Debug Mode (allows unsigned panels to run in AE):
-   - **Windows**: In PowerShell (Run as Administrator):
-     ```powershell
-     reg add "HKCU\Software\Adobe\CSXS.9" /v PlayerDebugMode /t REG_SZ /d 1 /f
-     reg add "HKCU\Software\Adobe\CSXS.10" /v PlayerDebugMode /t REG_SZ /d 1 /f
-     reg add "HKCU\Software\Adobe\CSXS.11" /v PlayerDebugMode /t REG_SZ /d 1 /f
-     reg add "HKCU\Software\Adobe\CSXS.12" /v PlayerDebugMode /t REG_SZ /d 1 /f
-     ```
-2. Copy (or create a symbolic link to) the [`extension`](file:///g:/My%20Drive/_openProjects/AEthingy/extension) folder into AE's extensions directory:
-   - **Windows**: `%APPDATA%\Adobe\CEP\extensions\CustomRoundedRect`
-   - **macOS**: `~/Library/Application Support/Adobe/CEP/extensions/CustomRoundedRect`
-3. Launch After Effects.
-4. In the top menu, open **Window > Extensions > Custom Rounded Rectangle**.
-5. *(Optional)* For live web debugging, open Chrome and navigate to `http://localhost:8088`.
-
-### Option B: Install the Signed ZXP File
-Use any standard ZXP installer:
-- [Anastasiy's Extension Manager](https://install.anastasiy.com/)
-- [ZXPInstaller](https://zxpinstaller.com/)
-Drag and drop `CustomRoundedRect.zxp` into the installer.
-
----
-
-## 📄 Manifest Specification (`CSXS/manifest.xml`)
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="9.0" 
-                   ExtensionBundleId="com.aethingy.customroundedrect" 
-                   ExtensionBundleVersion="1.0.0" 
-                   ExtensionBundleName="Custom Rounded Rectangle" 
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <ExtensionList>
-        <Extension Id="com.aethingy.customroundedrect.panel" Version="1.0.0" />
-    </ExtensionList>
-    <ExecutionEnvironment>
-        <HostList>
-            <!-- AECT is Adobe After Effects. Covers AE CC 2018 (v15.0) through AE 2026+ -->
-            <Host Name="AECT" Version="[15.0,99.9]" />
-        </HostList>
-        <LocaleList>
-            <Locale Code="All" />
-        </LocaleList>
-        <RequiredRuntimeList>
-            <RequiredRuntime Name="CSXS" Version="9.0" />
-        </RequiredRuntimeList>
-    </ExecutionEnvironment>
-    <DispatchInfoList>
-        <Extension Id="com.aethingy.customroundedrect.panel">
-            <DispatchInfo>
-                <Resources>
-                    <MainPath>./index.html</MainPath>
-                    <ScriptPath>./jsx/hostscript.jsx</ScriptPath>
-                </Resources>
-                <UI>
-                    <Type>Panel</Type>
-                    <Menu>Custom Rounded Rectangle</Menu>
-                    <Geometry>
-                        <Size><Height>600</Height><Width>340</Width></Size>
-                        <MinSize><Height>450</Height><Width>280</Width></MinSize>
-                    </Geometry>
-                </UI>
-            </DispatchInfo>
-        </Extension>
-    </DispatchInfoList>
-</ExtensionManifest>
-```
 
 ---
 
