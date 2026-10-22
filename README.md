@@ -35,17 +35,6 @@ CustomRoundedRect/
 
 ```
 
----
-
-## 🚀 Submitting to Adobe Exchange (Marketplace)
-
-The package [`CustomRoundedRect.zxp`](CustomRoundedRect.zxp) has been built and digitally signed using Adobe's official `ZXPSignCmd` utility with Digicert timestamping. It is ready for direct submission to the Adobe Exchange Producer Portal.
-
-
----
-
----
-
 ## 📐 Mathematical Specification
 
 ### 1. Proportional Overlap Prevention (W3C CSS Algorithm)
