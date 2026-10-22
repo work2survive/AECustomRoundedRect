@@ -11,8 +11,6 @@ Unlike After Effects' built-in `Rectangle Path` (which only supports a single gl
 ```
 CustomRoundedRect/
 ├── CustomRoundedRect.zxp               # Signed package ready for Adobe Exchange submission
-├── build_zxp.ps1                       # One-click automated packaging & signing script
-├── build_zxp.bat                       # Windows launcher for build script
 │
 ├── extension/                          # Adobe CEP Extension source directory
 │   ├── CSXS/
