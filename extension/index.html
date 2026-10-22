@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Rounded Rectangle</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="title">Custom Rounded Rect</div>
+      <div class="badge">CEP v1.0.0</div>
+    </div>
+
+    <!-- Dimensions Section -->
+    <div class="card">
+      <div class="card-title">Dimensions (px)</div>
+      <div class="row">
+        <div class="col">
+          <label for="width">Width</label>
+          <input type="number" id="width" value="500" min="1" max="10000">
+        </div>
+        <div class="col">
+          <label for="height">Height</label>
+          <input type="number" id="height" value="300" min="1" max="10000">
+        </div>
+      </div>
+      <div class="row">
+        <button type="button" class="preset-btn" onclick="setDimensions(500, 300)">Card (500x300)</button>
+        <button type="button" class="preset-btn" onclick="setDimensions(400, 400)">Square (400x400)</button>
+        <button type="button" class="preset-btn" onclick="setDimensions(1920, 1080)">HD (1920x1080)</button>
+      </div>
+    </div>
+
+    <!-- Corners Section -->
+    <div class="card">
+      <div class="row spread">
+        <div class="card-title">Corner Radii (px)</div>
+        <label class="row" style="cursor: pointer;">
+          <input type="checkbox" id="link-all" onchange="onLinkToggle()">
+          <span>Link All</span>
+        </label>
+      </div>
+
+      <!-- Master Radius (when linked) -->
+      <div id="master-row" class="row" style="display: none;">
+        <span style="font-size: 11px; color: var(--text-muted);">All:</span>
+        <input type="range" id="master-slider" min="0" max="400" value="50" oninput="onMasterChange()">
+        <input type="number" id="master-input" value="50" min="0" style="width: 55px;" oninput="onMasterInputChange()">
+      </div>
+
+      <!-- 2x2 Corner Grid -->
+      <div id="corner-grid" class="corner-grid">
+        <div class="corner-cell">
+          <span>TL</span>
+          <input type="number" id="r-tl" value="50" min="0" oninput="onCornerChange()">
+        </div>
+        <div class="corner-cell">
+          <span>TR</span>
+          <input type="number" id="r-tr" value="50" min="0" oninput="onCornerChange()">
+        </div>
+        <div class="corner-cell">
+          <span>BL</span>
+          <input type="number" id="r-bl" value="50" min="0" oninput="onCornerChange()">
+        </div>
+        <div class="corner-cell">
+          <span>BR</span>
+          <input type="number" id="r-br" value="50" min="0" oninput="onCornerChange()">
+        </div>
+      </div>
+
+      <!-- Presets -->
+      <div class="presets-grid">
+        <button type="button" class="preset-btn" onclick="setCornerPreset('pill')">Capsule</button>
+        <button type="button" class="preset-btn" onclick="setCornerPreset('topTab')">Top Tab</button>
+        <button type="button" class="preset-btn" onclick="setCornerPreset('bottomTab')">Bottom Tab</button>
+        <button type="button" class="preset-btn" onclick="setCornerPreset('diagonal')">Diagonal</button>
+        <button type="button" class="preset-btn" onclick="setCornerPreset('card')">Card (30px)</button>
+        <button type="button" class="preset-btn" onclick="setCornerPreset('sharp')">Sharp (0px)</button>
+      </div>
+    </div>
+
+    <!-- Options Section -->
+    <div class="card">
+      <div class="card-title">Options</div>
+      <label class="row" style="cursor: pointer;">
+        <input type="checkbox" id="prevent-overlap" checked>
+        <span>Prevent Overlap (W3C CSS Proportional)</span>
+      </label>
+      <div class="row spread" style="padding-top: 4px;">
+        <label class="row" style="cursor: pointer;">
+          <input type="checkbox" id="add-fill" checked>
+          <span>Add Fill</span>
+        </label>
+        <label class="row" style="cursor: pointer;">
+          <input type="checkbox" id="add-stroke">
+          <span>Add Stroke</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <button type="button" id="btn-create" class="btn-primary" onclick="createRectangle()">Create Rounded Rectangle</button>
+      <div class="row">
+        <button type="button" id="btn-apply" class="btn-secondary" onclick="applyToSelected()">Apply to Selected</button>
+        <button type="button" id="btn-copy" class="btn-secondary" onclick="copyExpression()">Copy Expression</button>
+      </div>
+    </div>
+
+    <!-- Status Line -->
+    <div id="status" class="status">Ready.</div>
+  </div>
+
+  <script src="js/CSInterface.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

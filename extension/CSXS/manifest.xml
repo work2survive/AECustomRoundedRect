@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionManifest Version="9.0" 
+                   ExtensionBundleId="com.aethingy.customroundedrect" 
+                   ExtensionBundleVersion="1.0.0" 
+                   ExtensionBundleName="Custom Rounded Rectangle" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ExtensionList>
+        <Extension Id="com.aethingy.customroundedrect.panel" Version="1.0.0" />
+    </ExtensionList>
+    
+    <ExecutionEnvironment>
+        <HostList>
+            <!-- AEFT is Adobe After Effects. Version range [15.0, 25.9] in x.y format covering CC 2018 through 2025+ -->
+            <Host Name="AEFT" Version="[15.0,25.9]" />
+        </HostList>
+        <LocaleList>
+            <Locale Code="All" />
+        </LocaleList>
+        <RequiredRuntimeList>
+            <RequiredRuntime Name="CSXS" Version="9.0" />
+        </RequiredRuntimeList>
+    </ExecutionEnvironment>
+    
+    <DispatchInfoList>
+        <Extension Id="com.aethingy.customroundedrect.panel">
+            <DispatchInfo>
+                <Resources>
+                    <MainPath>./index.html</MainPath>
+                    <ScriptPath>./jsx/hostscript.jsx</ScriptPath>
+                </Resources>
+                <Lifecycle>
+                    <AutoVisible>true</AutoVisible>
+                </Lifecycle>
+                <UI>
+                    <Type>Panel</Type>
+                    <Menu>Custom Rounded Rectangle</Menu>
+                    <Geometry>
+                        <Size>
+                            <Height>600</Height>
+                            <Width>340</Width>
+                        </Size>
+                        <MinSize>
+                            <Height>450</Height>
+                            <Width>280</Width>
+                        </MinSize>
+                        <MaxSize>
+                            <Height>1400</Height>
+                            <Width>650</Width>
+                        </MaxSize>
+                    </Geometry>
+                    <Icons>
+                        <Icon Type="Normal">./icons/iconNormal.png</Icon>
+                        <Icon Type="RollOver">./icons/iconRollover.png</Icon>
+                        <Icon Type="DarkNormal">./icons/iconDark.png</Icon>
+                        <Icon Type="DarkRollOver">./icons/iconDarkRollover.png</Icon>
+                    </Icons>
+                </UI>
+            </DispatchInfo>
+        </Extension>
+    </DispatchInfoList>
+</ExtensionManifest>
